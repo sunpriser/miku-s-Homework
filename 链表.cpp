@@ -16,47 +16,88 @@ typedef struct I_Linked_List
     /* data */
 }ILLST;
 
-//添加结构体指针
-ILLST *p, *head, *tail;
 
-//StructPointer Init
-void Pointer_Init()
-{
-    //Pointer Init
-    p = (ILLST*)malloc(sizeof(ILLST));
-    head = p;
-    tail = p;
-    tail->next = NULL;
-}
+
 
 //Linked List Create func
 /*
-    input : Struct Pointer, Head Pointer, tail Pointer, amount of the List you need to creat;
+    input : Head Pointer, tail Pointer, amount of the List you need to creat;
     Init Linked List
 */ 
-void LikLstCrt(ILLST* p, ILLST* head, ILLST* tail, int n)
+void LikLstCrt(ILLST** head_ptr, ILLST** tail_ptr, int n)
 {
     if(n <= 0)
     {
         printf("n must be a non-negative integer");
         return;
     }
+
+    ILLST *p = NULL;
+    p = (ILLST*)malloc(sizeof(ILLST));
+    if (p == NULL) 
+    {
+        printf("Error: Memory allocation failed!\n");
+        return;
+    }
     
     for(int i = 0; i < n; i++)
     {
         p = (ILLST*)malloc(sizeof(ILLST));
-        printf("The integer number you want to input\n");
+        if (p == NULL) 
+        {
+            printf("Error: Memory allocation failed!\n");
+            return;
+        }
+
+        printf("Please input the %d-th integer: ", i+1);
         scanf("%d", &(p->integer_node));
-        tail->next = p;
-        tail->next = NULL;
+        p->next = NULL; 
+
+        if (*head_ptr == NULL) 
+        {
+            *head_ptr = p;
+            *tail_ptr = p;
+        } 
+        else 
+        {
+            (*tail_ptr)->next = p;
+            *tail_ptr = p;
+        }
     }
+}
+
+//print Linked List Func
+void Pt_LinkedList(ILLST *Pointer)
+{
+    ILLST *Pto = Pointer;
+    
+    printf("The data of your List\n");
+    while(Pto != NULL)
+    {
+        printf("%d ",Pto->integer_node);
+        Pto = Pto->next;
+    }
+}
+
+//free Linked List
+void LikLstFree(ILLST** head_ptr)
+{
+    ILLST *temp = *head_ptr;
+    while (temp != NULL) 
+    {
+        *head_ptr = (*head_ptr)->next;
+        free(temp);
+        temp = *head_ptr;
+    }
+    *head_ptr = NULL;
 }
 
 //main func
 int main()
 {
-    //point Init
-    Pointer_Init();
+    //添加结构体指针
+    ILLST *head = NULL, *tail = NULL;
+
 
 
     //how long of the List you want to creat
@@ -64,9 +105,14 @@ int main()
     printf("The Length of the initial List : \n");
     scanf("%d", &lgth);
 
-    LikLstCrt(p, head, tail, lgth);
+    LikLstCrt(&head, &tail, lgth);
+
+    //check the content of Linked List
+     Pt_LinkedList(head);
 
 
+
+    LikLstFree(&head);
     return 0;
 }
 
