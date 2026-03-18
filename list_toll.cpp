@@ -2,7 +2,7 @@
 //claim malloc head file
 #include <stdlib.h>
 
-#include "list_toll.h"
+#include "list_toll.hpp"
 
 
 
@@ -14,7 +14,7 @@
 */ 
 void LikLstCrt(ILLST** head_ptr, ILLST** tail_ptr, int n)
 {
-    if(n <= 0)
+    if(n < 0)
     {
         printf("n must be a non-negative integer");
         return;

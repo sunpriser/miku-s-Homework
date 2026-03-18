@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "list_toll.h"
+
+#include "list_toll.hpp"
 
 
 
@@ -30,5 +31,4 @@ int main()
     return 0;
 }
 
-//bug 记录：当输入0的长度时，程序乱码。
 
