@@ -38,4 +38,7 @@ ILLST * rand_ptr(ILLST * head);
 //delete the point front of ptr;
 void dele_ft_pit(ILLST *ptr);
 
+//找链表最小值，并返回奇数偶数信息
+int fd_List_min(ILLST * head_ptr);
+
 #endif // !__LIST_TOLL_H__
