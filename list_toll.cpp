@@ -192,3 +192,20 @@ void Pt_cir_List(ILLST ** head_ptr)
         Ptr_1 = Ptr_1->next;
     } while (Ptr_1 != *head_ptr);
 }
+
+//选择链表节点
+ILLST *rand_ptr(ILLST *head)
+{
+    int num;
+    scanf("%d", &num);
+
+    ILLST *ptr = head;
+
+    for(int i = 0; i < num; i++)
+    {
+        ptr = ptr->next;
+    }
+
+    return ptr;
+}
+

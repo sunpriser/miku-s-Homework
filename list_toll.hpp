@@ -26,4 +26,15 @@ void LikLstFree(ILLST** head_ptr);
 //将值为b的节点插在值为a的节点前，若a不存在，则将b插入到表尾
 void Insrt_bfta_List(ILLST ** head_ptr);
 
+//将一个链表改为循环链表
+void Circle_List(ILLST ** head_ptr);
+
+//打印循环链表
+void Pt_cir_List(ILLST ** head_ptr);
+
+//选择链表节点
+ILLST * rand_ptr(ILLST * head);
+
+
+
 #endif // !__LIST_TOLL_H__
