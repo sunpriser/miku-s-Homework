@@ -153,3 +153,42 @@ void Insrt_bfta_List(ILLST ** head_ptr)
         printf("insert after tail\n");
     }
 }
+
+//将一个链表改为循环链表
+void Circle_List(ILLST ** head_ptr)
+{
+    // 1. 校验入参：头指针地址为空 或 链表本身为空，直接返回
+    if (head_ptr == NULL || *head_ptr == NULL) 
+    {
+        printf("链表为空，无法构建循环链表\n");
+        return;
+    }
+    // 2. 找到链表的最后一个节点
+    ILLST *current = *head_ptr;  // 从链表头开始遍历
+    while (current->next != NULL) 
+    {
+        current = current->next;
+    }
+
+    // 3. 将尾节点的 next 指向链表头，形成循环
+    current->next = *head_ptr;
+}
+
+//打印循环链表
+void Pt_cir_List(ILLST ** head_ptr)
+{
+    ILLST * Ptr_1 = NULL;
+    Ptr_1 = *head_ptr;
+    if (head_ptr == NULL || *head_ptr == NULL) 
+    {
+        printf("循环链表为空，无需打印\n");
+        return;
+    }
+
+    printf("循环链表内容");
+    do
+    {
+        printf("%d ", Ptr_1->integer_node);
+        Ptr_1 = Ptr_1->next;
+    } while (Ptr_1 != *head_ptr);
+}
