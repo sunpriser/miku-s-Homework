@@ -227,3 +227,39 @@ void dele_ft_pit(ILLST *ptr)
     free(ptr_tmp);
 }
 
+//找链表最小值，并返回奇数偶数信息
+int fd_List_min(ILLST * head_ptr)
+{
+    ILLST * pt_pa, * pt_mi;
+    pt_pa = head_ptr; pt_mi = head_ptr;
+    int temp = head_ptr->integer_node;
+    while(pt_pa != NULL)
+    {
+        if(temp < pt_pa->integer_node)
+        {
+            temp = pt_pa->integer_node;
+        }
+        pt_pa = pt_pa->next;
+    }
+    printf("最小值为: %d", temp);
+    pt_pa = head_ptr;
+    if(temp % 2 == 0)
+    {
+        return 2;
+    }
+    else
+    {
+        while(pt_pa != NULL)
+        {
+            if(pt_pa->next->integer_node = temp)
+            {
+                pt_mi = pt_pa->next;
+                pt_pa->next = pt_mi->next;
+                free(pt_mi);
+                printf("已删除一个最小值\n");
+            }
+            pt_pa = pt_pa->next;
+        }
+    }
+
+}

@@ -30,48 +30,54 @@ int main()
    scanf("%d", &nqs);
    switch (nqs)
     {
-    case 1:
-    {
-        // check the content of Linked List
-        Pt_LinkedList(head);
+        case 1:
+        {
+            // check the content of Linked List
+            Pt_LinkedList(head);
 
-        Insrt_bfta_List(&head);
+            Insrt_bfta_List(&head);
 
-        // check the content
-        Pt_LinkedList(head);
+            // check the content
+            Pt_LinkedList(head);
+            LikLstFree(&head);
 
-        break;
-    }
+            break;
+        }
 
-    case 2:
-    {
-        // 改成循环链表
-        Circle_List(&head);
-
-        // 打印循环链表
-        Pt_cir_List(&head);
-
-        // 选择节点
-        printf("选择节点\n");
-        ILLST *ptr_rnd = rand_ptr(head);
-        
-        printf("current point content is : %d\n", ptr_rnd->integer_node);
-
-        //delete the point front of ptr;
-        dele_ft_pit(ptr_rnd);
-        break;
-    }
-
-    default:
-    {
-        printf("invalid input\n");
-        break;
-    }
+        case 2:
+        {
+            Circle_List(&head);
+            Pt_cir_List(&head);
+            printf("\n选择节点\n");
+            ILLST *ptr_rnd = rand_ptr(head);
+            printf("current point content is : %d\n", ptr_rnd->integer_node);
+            dele_ft_pit(ptr_rnd);
+            printf("删除后:\n");
+            Pt_cir_List(&head);
+            ILLST *tail = head;
+            //free一下
+            while(tail->next != head)
+            {
+                tail = tail->next;
+            }
+            tail->next = NULL;
+            LikLstFree(&head);
+            break;
+        }
+        case 3 :
+        {
+            
+        }
+        default:
+        {
+            printf("invalid input\n");
+            break;
+        }
     }
 
     
 
-    LikLstFree(&head);
+    
     return 0;
 }
 
