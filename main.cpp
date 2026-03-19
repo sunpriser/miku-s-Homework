@@ -8,6 +8,7 @@
 //main func
 int main()
 {
+    system("chcp 65001");
     //添加结构体指针
     ILLST *head = NULL, *tail = NULL;
 
@@ -51,9 +52,13 @@ int main()
         Pt_cir_List(&head);
 
         // 选择节点
+        printf("选择节点\n");
         ILLST *ptr_rnd = rand_ptr(head);
-        printf("current point content is : %d", ptr_rnd->integer_node);
+        
+        printf("current point content is : %d\n", ptr_rnd->integer_node);
 
+        //delete the point front of ptr;
+        dele_ft_pit(ptr_rnd);
         break;
     }
 

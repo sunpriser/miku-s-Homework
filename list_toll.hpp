@@ -35,6 +35,7 @@ void Pt_cir_List(ILLST ** head_ptr);
 //选择链表节点
 ILLST * rand_ptr(ILLST * head);
 
-
+//delete the point front of ptr;
+void dele_ft_pit(ILLST *ptr);
 
 #endif // !__LIST_TOLL_H__

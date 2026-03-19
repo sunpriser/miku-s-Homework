@@ -209,3 +209,21 @@ ILLST *rand_ptr(ILLST *head)
     return ptr;
 }
 
+//delete the point front of ptr;
+void dele_ft_pit(ILLST *ptr)
+{
+    if(ptr == NULL || ptr->next == ptr)
+        return;
+
+    ILLST *ptr_fft = ptr;
+
+    while(ptr_fft->next->next != ptr)
+    {
+        ptr_fft = ptr_fft->next;
+    }
+
+    ILLST *ptr_tmp = ptr_fft->next;
+    ptr_fft->next = ptr;
+    free(ptr_tmp);
+}
+
