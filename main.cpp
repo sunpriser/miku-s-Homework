@@ -66,7 +66,9 @@ int main()
         }
         case 3 :
         {
-            
+            fd_List_min(&head);
+            Pt_LinkedList(head);
+            break;
         }
         default:
         {

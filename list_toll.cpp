@@ -228,38 +228,57 @@ void dele_ft_pit(ILLST *ptr)
 }
 
 //找链表最小值，并返回奇数偶数信息
-int fd_List_min(ILLST * head_ptr)
+int fd_List_min(ILLST **head_ptr)
 {
-    ILLST * pt_pa, * pt_mi;
-    pt_pa = head_ptr; pt_mi = head_ptr;
-    int temp = head_ptr->integer_node;
+    if(head_ptr == NULL || *head_ptr == NULL)
+        return -1;
+
+    ILLST *pt_pa = *head_ptr;
+    int temp = pt_pa->integer_node;
+
+    // 找最小值
     while(pt_pa != NULL)
     {
-        if(temp < pt_pa->integer_node)
+        if(temp > pt_pa->integer_node)
         {
             temp = pt_pa->integer_node;
         }
         pt_pa = pt_pa->next;
     }
-    printf("最小值为: %d", temp);
-    pt_pa = head_ptr;
+
+    printf("最小值为: %d\n", temp);
+
+    // 偶数直接返回
     if(temp % 2 == 0)
     {
         return 2;
     }
-    else
+
+    // 奇数：删除一个最小值
+    if((*head_ptr)->integer_node == temp)
     {
-        while(pt_pa != NULL)
-        {
-            if(pt_pa->next->integer_node = temp)
-            {
-                pt_mi = pt_pa->next;
-                pt_pa->next = pt_mi->next;
-                free(pt_mi);
-                printf("已删除一个最小值\n");
-            }
-            pt_pa = pt_pa->next;
-        }
+        ILLST *tmp = *head_ptr;
+        *head_ptr = (*head_ptr)->next;
+        free(tmp);
+        printf("已删除头部最小值\n");
+        return 1;
     }
 
+    pt_pa = *head_ptr;
+
+    while(pt_pa->next != NULL)
+    {
+        if(pt_pa->next->integer_node == temp)
+        {
+            ILLST *pt_mi = pt_pa->next;
+            pt_pa->next = pt_mi->next;
+            free(pt_mi);
+            printf("已删除一个最小值\n");
+            return 1;
+        }
+
+        pt_pa = pt_pa->next;
+    }
+
+    return 1;
 }
